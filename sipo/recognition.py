@@ -6,10 +6,11 @@ Created on 2017/3/19
 """
 
 import sys
+import pickle
+
 from PIL import Image
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn import linear_model
 
 
 def load_dataset():
@@ -52,8 +53,7 @@ if __name__ == "__main__":
     X, y = load_dataset()
     knn = KNeighborsClassifier(n_neighbors=5)
     knn.fit(X, y)
-    # lr = linear_model.LogisticRegression(solver='liblinear', C=10000)
-    # lr.fit(X, y)
+    with open('sipoknn.pkl', 'wb') as f:
+        pickle.dump(knn, f)
 
-    # print(lr.predict(letters))
     print(knn.predict(letters))
