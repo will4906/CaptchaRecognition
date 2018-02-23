@@ -4,11 +4,11 @@ Created on 2017/3/19
 
 @author: will4906
 """
-import pickle
 import numpy as np
 import os
 
 from PIL import Image
+from sklearn.externals import joblib
 
 
 def split_letters(path):
@@ -28,11 +28,9 @@ def split_letters(path):
         letters.append(letter.reshape(9*13))
     return letters
 
-if __name__ == "__main__":
-    sipoknn = None
-    with open('sipoknn.pkl', 'rb') as f:
-        sipoknn = pickle.load(f)
 
+if __name__ == "__main__":
+    sipoknn = joblib.load('sipoknn.job')
 
     for test in os.listdir('./test'):
         letters = split_letters('./test/' + test)

@@ -19,15 +19,14 @@ def load_dataset():
 
     for i in range(70):
         path = "./train/%d%d.png" % (i / 7, i % 7)
-        pix = np.array(Image.open(path).convert("L"))
-        # print(pix.reshape(8*20).shape)
+        pix = np.asarray(Image.open(path).convert("L"))
         X.append(pix.reshape(9*13))
         y.append(int(i / 7))
-    return np.array(X), np.array(y)
+    return np.asarray(X), np.asarray(y)
 
 
 def split_letters(path):
-    pix = np.array(Image.open(path).convert('L'))
+    pix = np.asarray(Image.open(path).convert('L'))
     # threshold image
     pix = (pix > 135) * 255
 
@@ -45,15 +44,9 @@ def split_letters(path):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python recognizer.py <image_filename>")
-
-    letters = split_letters(sys.argv[1])
-
     X, y = load_dataset()
-    knn = KNeighborsClassifier(n_neighbors=5)
+    knn = KNeighborsClassifier()
     knn.fit(X, y)
-    with open('sipoknn.pkl', 'wb') as f:
-        pickle.dump(knn, f)
 
+    letters = split_letters('./test/test2.png')
     print(knn.predict(letters))
