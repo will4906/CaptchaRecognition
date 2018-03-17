@@ -12,6 +12,7 @@ sklearn = "*"
 pillow = "*"
 requests = "*"
 scipy = "*"
+django = "*"
 
 
 [dev-packages]

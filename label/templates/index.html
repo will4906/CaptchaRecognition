@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h5>{{file_name}}</h5>
+<img src="{% url 'project:image' %}?file_name={{ file_name }}">
+<h5>总数： {{ whole_len }}</h5>
+<form method="post">
+    {% csrf_token %}
+    <input name="file_name" value="{{ file_name }}" type="hidden">
+    <input name="result" type="text" autofocus>
+    <button>提交</button>
+</form>
+</body>
+</html>

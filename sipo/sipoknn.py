@@ -29,9 +29,12 @@ def split_letters(path):
     return letters
 
 
-if __name__ == "__main__":
-    sipoknn = joblib.load('sipoknn.job')
+def get_captcha_result(model_path, filename):
+    sipo_knn = joblib.load(model_path)
+    letters = split_letters(filename)
+    return sipo_knn.predict(letters)
 
+
+if __name__ == "__main__":
     for test in os.listdir('./test'):
-        letters = split_letters('./test/' + test)
-        print(sipoknn.predict(letters))
+        print(get_captcha_result('sipoknn.job', './test/' + test))
