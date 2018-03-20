@@ -3,6 +3,8 @@
 Created on 2017/3/19
 
 @author: will4906
+
+获取验证码
 """
 import requests
 import uuid
