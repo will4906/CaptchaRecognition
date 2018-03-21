@@ -115,4 +115,4 @@ knn = KNeighborsClassifier()
 knn.fit(X, y)
 ```
 
-主要步骤和sipo是差不多的，这里不再赘述。
+主要步骤和sipo是差不多的，这里不再赘述。在不区分0和O的情况下准确率能达99%以上。
